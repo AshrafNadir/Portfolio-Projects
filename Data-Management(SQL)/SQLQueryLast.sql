@@ -1,6 +1,6 @@
 
 /* Work-Flow
---> Table Creation from case study
+--> Normalisation (Upto 3NF), Table Creation from case study
 --> Putting dummy data in the tables
 --> Data Transformation ( example with "CustomerInformation" table: extract data from the operational table, transform data in the staging table)
 --> Validation of case study and business requirements by quering the data.
@@ -16,8 +16,8 @@ Current System:
 There is one rental centre in Eastbourne. They offer daily / weekly / monthly hire for electric bikes which allow people to ride on the South Downs (a 
 national park). They have personal and business customers. SEMBR stores customer information, and many customers make repeat rentals. They currently stock two types of bike for hire:  
  
-•	Full suspension  	(High Season £50 per day / Low Season £40 per day) 
-•	Hardtail 	 	(High Season £40 per day / Low Season £30 per day) 
+â€¢	Full suspension  	(High Season Â£50 per day / Low Season Â£40 per day) 
+â€¢	Hardtail 	 	(High Season Â£40 per day / Low Season Â£30 per day) 
  
 Each bike hire is recorded separately (i.e., if someone want 3 bikes for one day, that is three hires).
 The cost of rental is more in the high season (May-August) than low season (September-April). 
@@ -52,20 +52,20 @@ APPENDIX 1: CASE STUDY AND REQUIREMENTS
 The new system should support the following requirements: 
  
 1.	Register customers for first use, including name, address, dob. 
-    A photo ID must be human-verified human to check age – this can be completed by WTT or SEMBR staff. 
+    A photo ID must be human-verified human to check age â€“ this can be completed by WTT or SEMBR staff. 
 2.	Record information for each bike, including type (currently two types, may be more in future), 
     unique frame number (UFN), service history and overall condition.  
-3.	Show location of the bike – currently and on any given future date (based on bookings). 
+3.	Show location of the bike â€“ currently and on any given future date (based on bookings). 
 4.	Record information about any emergency repairs (WTT bikes only), including whether SEMBR issued a replacement bike. 
     Include the holiday number from WTT.  
 5.	Calculate the total number of bikes on hire for a given period. 
-6.	Calculate the total income from hired bikes for a given period – split this between WTT and other hires.
+6.	Calculate the total income from hired bikes for a given period â€“ split this between WTT and other hires.
 
 
 APPENDIX 2: EXAMPLE DOCUMENT FOR NORMALISATION
 CUSTOMER and HIRE record for normalisation
 This is the prototype view of a customer record showing their hire history.
-It will not contain all required data – you will need to add to what is here in your design (but should normalise just this data to inform your data model). 
+It will not contain all required data â€“ you will need to add to what is here in your design (but should normalise just this data to inform your data model). 
 Note that the earlier hires for this customer are via WTT, but the later ones are individual bookings.
 
 CUSTOMER INFORMATION
@@ -82,13 +82,13 @@ Verified By (staffID): GR2r
 Staff Name: Gill Roller	
 -->ID SCAN
  	
-UFN	  BIKE TYPE	        RENTAL START *	PICKUP LOCATION	     DAYS	COST PER DAY (£)	TOTAL PAID	  RETURN LOCATION	     RETURN SIGNOFF 	SIGNOFF BY	     WTT REF (OPTIONAL)
+UFN	  BIKE TYPE	        RENTAL START *	PICKUP LOCATION	     DAYS	COST PER DAY (Â£)	TOTAL PAID	  RETURN LOCATION	     RETURN SIGNOFF 	SIGNOFF BY	     WTT REF (OPTIONAL)
 F14	  Full suspension	01/08/2023	    Eastbourne EB12 8RG	  10	      50	            500	     Winchester WC8 2LR	          yes	      GR2 Gill Roller	    WTT123
 F22	  Full suspension	01/08/2023	    Eastbourne EB12 8RG	  10	      50	            500	     Winchester WC8 2LR	          yes	      GR2 Gill Roller	    WTT123
 H86	  Hardtail	        18/09/2023	    Winchester WC8 2LR	   5	      30	            150	     Winchester WC8 2LR	          no**	      LW8 Lee Wilson	
 F22	  Full suspension	12/10/2023	    Eastbourne EB12 8RG	   2	      40	             80	     Eastbourne EB12 8RG	      ***NULL	            NULL	
 
-*note: varying price for same type of bike between August and October – this will change each year 
+*note: varying price for same type of bike between August and October â€“ this will change each year 
 **note: bike damaged this hire, so it would have had to be repaired (details not shown here)
 ***note: bike not yet returned (hire still in progress)
 
@@ -384,7 +384,7 @@ WHERE Address2 IS NULL;
 
 /* Requirements of the case study. Checking if they met partially, fully or not. */
 
--- Requirement: Show location of the bike – currently and on any given future date (based on bookings). 
+-- Requirement: Show location of the bike â€“ currently and on any given future date (based on bookings). 
 -- Currrent Location
 SELECT
     Booking.BikeID,
@@ -424,7 +424,7 @@ ORDER BY
     Booking.Rental_Start DESC;
 
 /* Register customers for first use, including name, address, dob. 
-A photo ID must be human-verified human to check age – this can be completed by WTT or SEMBR staff. */
+A photo ID must be human-verified human to check age â€“ this can be completed by WTT or SEMBR staff. */
 
 SELECT Forename,
        Surname,
@@ -477,7 +477,7 @@ SELECT Bike.BikeType AS Bike_Type,
        Bike.BikeID AS Unique_Frame_Number,
 	   Bike.Overall_Condition,
 	   Bike_Service_History.Description AS Service_History,
-	   '£' + CAST(CAST(Bike_Service_History.Cost AS DECIMAL(10,2)) AS VARCHAR) AS Service_Cost
+	   'Â£' + CAST(CAST(Bike_Service_History.Cost AS DECIMAL(10,2)) AS VARCHAR) AS Service_Cost
 
 FROM Bike
 JOIN Bike_Service_History ON Bike_Service_History.BikeID= Bike.BikeID 
