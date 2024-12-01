@@ -134,8 +134,7 @@ WHERE WTT_REF IS NOT NULL;
 
 ---
 
-For detailed explanation like **Normalisations, diagrams, Star Schema design , Business Intelligence use cases** and more see the doc file.
-Please refer to the detailed document:
+For detailed explanation like **Normalisations, diagrams, Star Schema design , Business Intelligence use cases** and more see the doc file:
 
 📄 [View the Documentation](https://github.com/AshrafNadir/Portfolio-Projects/blob/master/Data-Management(SQL)/DataManagement.docx)
 
