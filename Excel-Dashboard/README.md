@@ -25,7 +25,7 @@ The project is based on data from three main tables:
 
 1.**Products:**
 
--Product ID: Unique identifier for each product.
+- Product ID: Unique identifier for each product.
 
 - Coffee Type: Specifies the type of coffee (e.g., Arabica, Robusta).
 
