@@ -1,7 +1,7 @@
-# Sales and Profitability Analysis Dashboard
+# Sales and Profitability Analysis Dashboard | Plant Co.
 
 ## Overview
-This Power BI dashboard provides an interactive and dynamic analysis of key business metrics, including Gross Profit (GP), Sales, and Quantity. It is designed to track Year-To-Date (YTD) and Prior Year-To-Date (PYTD) performance, offering actionable insights into overall business profitability, product trends, and country-level performance. The dashboard enables users to explore data and derive meaningful insights through intuitive visualizations.
+This Power BI dashboard for Plant Co., a plant-based company, provides an interactive and dynamic analysis of key business metrics, including Gross Profit (GP), Sales, and Quantity. It is designed to track Year-To-Date (YTD) and Prior Year-To-Date (PYTD) performance, offering actionable insights into overall business profitability, product trends, and country-level performance. The dashboard enables users to explore data and derive meaningful insights through intuitive visualizations.
 
 ## Features
 - **Dynamic Metric Selection**: Switch between Gross Profit, Sales, and Quantity metrics to analyze trends and summaries.
